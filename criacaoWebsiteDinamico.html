@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jaqueline Lima" />
+    <meta
+      name="description"
+      content="Criação de Website com Carregamento Dinâmico"
+    />
+
+    <title>Criação de Website com Carregamento Dinâmico</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <script type="text/javascript" src="criacaoWebsiteDinamico.js"></script>
+
+    <link rel="stylesheet" href="criacaoWebsiteDinamico.css" />
+
+    <link href="lightbox2-2.11.5/dist/css/lightbox.css" rel="stylesheet" />
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ4UYojA3LduldgOlizCQJjjpNCjHkvn4&loading=async&callback=carregarMapa"></script>
+  </head>
+
+  <body onload="onLoad()">
+      <section id="home"></section>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" id="home" href="#home">HOME</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                id="about"
+                href="#section_about"
+                >SOBRE</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                id="contact"
+                href="#section_gallery"
+                >GALERIA</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                id="gallery"
+                href="#section_form_contact"
+                >CONTACTOS</a
+              >
+            </li>
+          </ul>
+          <!-- 
+          <form class="navbar-form navbar-left">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control pb-1 pt-1 m-2"
+                placeholder="Pesquisar"
+              />
+              <i class="bi bi-search"></i>
+            </div> 
+          </form> -->
+        </div>
+      </div>
+    </nav>
+
+    <div class="container"></div>
+    <section id="section_about">
+      <h1 class="text-center">Caso Prático - Javascript</h1>
+      <div class="container">
+        <div class="row">
+          <div id="div_about" class="col-9">
+            <h2>Sobre</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ut
+              praesentium unde debitis natus quis ducimus ullam ipsa modi,
+              veniam aliquam eius quisquam cumque voluptates repellat obcaecati
+              soluta laudantium fugiat. Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit. Quidem quasi explicabo eius sit voluptas
+              temporibus blanditiis quod! Delectus incidunt ex, rerum itaque
+              obcaecati voluptatibus veritatis, esse, eos iure placeat sunt.
+            </p>
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+              similique magnam, molestias aperiam eum alias laboriosam nam
+              architecto in necessitatibus veritatis quidem pariatur fuga vel
+              animi, provident totam facere atque?. Lorem ipsum dolor, sit amet
+              consectetur adipisicing elit. Eveniet fugiat facere accusamus sed
+              illum magni magnam saepe dolorum tenetur voluptatibus recusandae
+              ipsam voluptates ullam, molestias autem minima quos ea odio!
+            </p>
+          </div>
+
+          <div id="div_news" class="col-3">
+            <svg class="bi me-2" width="30" height="24">
+              <use xlink:href="#bootstrap"></use>
+            </svg>
+            <a href="#" span class="fs-5 fw-semibold" id="noticiasPortugal"
+              >Noticias Portugal
+            </a>
+            <div id="caixa" class="news-content"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="section_gallery">
+      <div class="container">
+        <h2>Galeria</h2>
+        <div id="carouselExampleCaptions" class="carousel slide">
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <a
+                href="image/morroDosVentos.JPG"
+                data-lightbox="projects"
+                data-title="Projeto criação do Site para o Mirante Morro dos Ventos."
+              >
+                <img
+                  src="image/morroDosVentos.JPG"
+                  class="d-block w-100"
+                  alt="Morro dos ventos"
+                />
+              </a>
+
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Morro dos ventos</h5>
+                <p>Projeto criação do Site para o Mirante Morro dos Ventos.</p>
+              </div>
+            </div>
+
+            <div class="carousel-item active">
+              <a
+                href="image/veuDasNoivas.png"
+                data-lightbox="projects"
+                data-title="Projeto criação do Blog do parque Véu das Noivas"
+              >
+                <img
+                  src="image/veuDasNoivas.png"
+                  class="d-block w-100"
+                  alt="Véu das Noivas"
+                />
+              </a>
+
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Véu das Noivas</h5>
+                <p>Projeto criação do Blog do parque em Véu das Noivas.</p>
+              </div>
+            </div>
+
+            <div class="carousel-item active">
+              <a
+                href="image/parqueNacionalChapadaDosGuimares.JPG"
+                data-lightbox="projects"
+                data-title="Parque Nacional Chapada Dos Guimarães"
+              >
+                <img
+                  src="image/parqueNacionalChapadaDosGuimares.JPG"
+                  class="d-block w-100"
+                  alt="Parque Nacional Chapada dos Guimarães"
+                />
+              </a>
+
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Parque Nacional Chapada Dos Guimarães</h5>
+                <p>Projeto criação do Site do parque em Véu das Noivas.</p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="section_budget">
+      <div class="container">
+        <form id="formBudget" novalidate onchange="calculateBudget()">
+          <h2>Pedido de Orçamento</h2>
+
+          <div class="row">
+            <div class="col">
+              <label for="nameBg">Nome: </label>
+              <input
+                name="nameBg"
+                id="nameBg"
+                type="text"
+                class="form-control"
+                required
+              />
+              <span class="error" id="msg-nameBg"></span>
+            </div>
+
+            <div class="col">
+              <label for="surnameBg">Apelido: </label>
+              <input
+                name="surnameBg"
+                id="surnameBg"
+                type="text"
+                class="form-control"
+                aria-label="apelido"
+                required
+              />
+              <span class="error" id="msg-surnameBg"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="cellPhoneBg">Telemóvel: </label>
+              <input
+                id="cellPhoneBg"
+                name="cellPhoneBg"
+                type="tel"
+                class="form-control"
+                aria-label="telemovel"
+                minlength="9"
+                maxlength="9"
+                size="9"
+              />
+              <span class="error" id="msg-cellPhoneBg"></span>
+            </div>
+
+            <div class="col">
+              <label for="emailBg">Email: </label>
+              <input
+                id="emailBg"
+                name="emailBg"
+                type="email"
+                class="form-control"
+                aria-label="email"
+                required
+              />
+              <span class="error" id="msg-emailBg"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="pageType">Tipo de Página: </label>
+              <select name="pageType" id="pageType" class="form-select">
+                <option selected>Escolha uma opcao</option>
+                <option value="100">Site</option>
+                <option value="200">E-commerce</option>
+                <option value="50">Blog</option>
+                <option value="80">Portifolio</option>
+                <option value="150">Portal</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label for="periodBg">Prazo em meses: </label>
+              <input
+                name="periodBg"
+                id="periodBg"
+                type="text"
+                class="form-control"
+                aria-label="prazo"
+              />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col">
+              <span>Marque os separadores desejados:</span>
+              <ul class="list-group">
+                <div class="row">
+                  <div class="col">
+                    <li class="list-group-item">
+                      <input
+                        id="whoCheck"
+                        name="whoCheck"
+                        class="form-check-input me-1"
+                        type="checkbox"
+                      />
+                      <label
+                        class="form-check-label stretched-link"
+                        for="whoCheck"
+                        >Quem somos</label
+                      >
+                    </li>
+                  </div>
+                  <div class="col">
+                    <li class="list-group-item">
+                      <input
+                        id="whereCheck"
+                        name="whereCheck"
+                        class="form-check-input me-1"
+                        type="checkbox"
+                      />
+
+                      <label
+                        class="form-check-label stretched-link"
+                        for="whereCheck"
+                        >Onde estamos</label
+                      >
+                    </li>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <li class="list-group-item">
+                      <input
+                        id="photoGallery"
+                        name="photoGallery"
+                        class="form-check-input me-1"
+                        type="checkbox"
+                      />
+                      <label
+                        class="form-check-label stretched-link"
+                        for="photoGallery"
+                        >Galeria de Fotografias</label
+                      >
+                    </li>
+                  </div>
+                  <div class="col">
+                    <li class="list-group-item">
+                      <input
+                        id="eCommerce"
+                        name="eCommerce"
+                        class="form-check-input me-1"
+                        type="checkbox"
+                      />
+                      <label
+                        class="form-check-label stretched-link"
+                        for="eCommerce"
+                        >eCommerce</label
+                      >
+                    </li>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <li class="list-group-item">
+                      <input
+                        id="internalManagement"
+                        name="internalManagement"
+                        class="form-check-input me-1"
+                        type="checkbox"
+                      />
+                      <label
+                        class="form-check-label stretched-link"
+                        for="internalManagement"
+                        >Gestão Interna</label
+                      >
+                    </li>
+                  </div>
+                  <div class="col">
+                    <li class="list-group-item">
+                      <input
+                        id="news"
+                        name="news"
+                        class="form-check-input me-1"
+                        type="checkbox"
+                      />
+                      <label class="form-check-label stretched-link" for="news"
+                        >Notícias</label
+                      >
+                    </li>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <li class="list-group-item">
+                      <input
+                        id="socialMedia"
+                        name="socialMedia"
+                        class="form-check-input me-1"
+                        type="checkbox"
+                      />
+                      <label
+                        class="form-check-label stretched-link"
+                        for="socialMedia"
+                        >Redes Sociais</label
+                      >
+                    </li>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="estimatedBudget">Orçamento estimado:</label>
+                <input
+                  readonly
+                  name="estimatedBudget"
+                  id="estimatedBudget"
+                  type="currency"
+                  class="form-control"
+                  aria-describedby="orcamentoEstimadoHelp"
+                />
+                <small id="orcamentoEstimadoHelp" class="form-text text-muted">
+                  E um valor meramente indicativo, pode sofrer alterações.
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <input
+            type="submit"
+            class="btn btn-primary mt-2"
+            onclick="submitBudget()"
+            value="Pedir Orçamento"
+          />
+        </form>
+      </div>
+    </section>
+
+    <section id="section_form_contact">
+      <div class="container">
+        <form id="formContact" novalidate>
+          <h2>Formulário de Contacto</h2>
+
+          <div class="row">
+            <div class="col">
+              <label for="nameContact">Nome: </label>
+              <input
+                name="nameContact"
+                id="nameContact"
+                type="text"
+                class="form-control"
+                required
+              />
+              <span class="error" id="msg-nameContact"></span>
+            </div>
+
+            <div class="col">
+              <label for="surnameContact">Apelido: </label>
+              <input
+                id="surnameContact"
+                type="text"
+                class="form-control"
+                aria-label="apelido"
+                required
+              />
+              <span class="error" id="msg-surnameContact"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+              <label for="cellPhoneContact">Telemóvel: </label>
+              <input
+                name="cellPhoneContact"
+                id="cellPhoneContact"
+                type="tel"
+                class="form-control"
+                aria-label="telemovel"
+                maxlength="9"
+                minlength="9"
+                required
+              />
+              <span class="error" id="msg-cellPhoneContact"></span>
+            </div>
+
+            <div class="col">
+              <label for="emailContact">Email: </label>
+              <input
+                name="emailContact"
+                id="emailContact"
+                type="email"
+                class="form-control"
+                aria-label="email"
+                required
+              />
+              <span class="error" id="msg-emailContact"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-2">
+              <label for="meetingContact">Data de reunião: </label>
+              <input
+                name="meetingContact"
+                id="meetingContact"
+                type="date"
+                class="form-control"
+                aria-label="date"
+                required
+              />
+              <span class="error" id="msg-meetingContact"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="subjectMeeting"
+              >Motivo da solicitação da reunião :
+            </label>
+            <div class="form-floating">
+              <textarea
+                name="subjectMeeting"
+                class="form-control"
+                id="subjectMeeting"
+              ></textarea>
+            </div>
+          </div>
+
+          <input
+            class="btn btn-primary mt-2"
+            type="submit"
+            value="Enviar"
+            onclick="validateContact()"
+          />
+        </form>
+      </div>
+    </section>
+
+    <section id="section_contact">
+      <div class="container mb-5">
+        <h2>Informações da empresa</h2>
+        <div class="row">
+          <div class="col">
+            <h4>Contactos :</h4>
+            <p>Endereço: Logoas Park, 121 , Porto Salvo - Lisboa/Portugal</p>
+            <p>(+351) 158-123-887</p>
+            <p>Email: email@empresa.conm</p>
+          </div>
+
+          <div class="col">
+            <h4>Onde estamos:</h4>
+
+            <div id="mapa" style="width: 100%; height: 400px"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="lightbox2-2.11.5/dist/js/lightbox.js"></script>
+  </body>
+</html>
