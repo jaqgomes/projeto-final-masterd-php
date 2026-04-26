@@ -1,13 +1,30 @@
 <?php
 include('NewsService.php');
 
-$newsService = new NewsService();
-
 session_start();
 
-$pageTitle = 'Add News — Web System';
+$newsService = new NewsService();
+
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+$news = $newsService->getNewsById($id);
+
+if (!$news) {
+    http_response_code(404);
+    $_SESSION['flash'] = ['type' => 'danger', 'message' => 'News not found.'];
+    header('Location: /projeto-final/news/list.php');
+    exit;
+}
+
+//metodo usado para validar e convertar data para exibir na tela
+if (!empty($news['data_publicacao'])) {
+    $dateObj = new DateTime($news['data_publicacao']);
+    $date = $dateObj->format('Y-m-d');
+}
+
+$pageTitle = 'Edit News — Web System';
 $errors = [];
-$input = ['titulo' => '', 'conteudo' => '', 'date' => '', 'imagem' => ''];
+$input = $news;
+$input['date'] = $date ?? ''; //se tiver valor em $date usa ele, se não tiver usa ''
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -27,7 +44,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $input['date'] = null;
     }
 
-    if (!empty($_FILES['imagem']['name'])) {
+    if (!empty($_POST['remover_imagem']) && !empty($news['imagem'])) {
+
+        $caminho = __DIR__ . '/uploads/' . $news['imagem'];
+
+        // Apaga o ficheiro físico
+        if (file_exists($caminho)) {
+            unlink($caminho);
+        }
+
+        // Define imagem como NULL no banco
+        $input['imagem'] = null;
+
+    } elseif (!empty($_FILES['imagem']['name'])) {
 
         $file = $_FILES['imagem'];
 
@@ -46,12 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         move_uploaded_file($_FILES['imagem']['tmp_name'], $destino);
     } else {
-        $input['imagem'] = null;
+        $input['imagem'] = $news['imagem'];
     }
 
     if (empty($errors)) {
 
-        $newsService->createNews(
+        $newsService->updateNews(
+            $id,
             $input['titulo'],
             $input['conteudo'],
             $input['imagem'],
@@ -69,7 +99,7 @@ require_once __DIR__ . '/../includes/header.html';
 
 <div class="row justify-content-center">
     <div class="col-lg-7">
-        <h2 class="page-header">Add News</h2>
+        <h2 class="page-header">Edit News</h2>
 
         <?php if (!empty($errors)): ?>
             <div class="alert alert-danger">
@@ -84,8 +114,8 @@ require_once __DIR__ . '/../includes/header.html';
                 <i class="bi bi-plus-circle me-2"></i>News Details
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="/projeto-final/news/create.php" novalidate enctype="multipart/form-data">
-
+                <form method="POST" action="/projeto-final/news/edit.php?id=<?= $id ?>" novalidate
+                    enctype="multipart/form-data">
 
                     <?php include __DIR__ . '/news-details.html'; ?>
 
@@ -98,7 +128,7 @@ require_once __DIR__ . '/../includes/header.html';
                         </a>
                         <button type="submit" class="btn btn-primary">
                             <i class="bi bi-save me-1"></i>
-                            Salve News
+                            Update News
                         </button>
                     </div>
 

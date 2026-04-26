@@ -30,8 +30,8 @@ $newsList = $newsService->getAllNews();
             <th scope="col">#</th>
             <th scope="col">Titulo</th>
             <th scope="col">Conteúdo</th>
-            <th scope="col">Imagem</th>
-            <th scope="col">Acoes</th>
+            <th scope="col">Data de Publicação</th>
+            <th scope="col">Ações</th>
         </thead>
 
         <tbody>
@@ -40,9 +40,9 @@ $newsList = $newsService->getAllNews();
                     <td><?= $news['id'] ?></td>
                     <td><?= $news['titulo'] ?></td>
                     <td><?= $news['conteudo'] ?></td>
-                    <td><?= $news['imagem'] ?></td>
+                    <td><?= substr($news['data_publicacao'] ?? '', 0, 10) ?></td>
                     <td>
-                        <a href="news-item.php?id=<?= $news['id'] ?>" class="btn btn-outline-primary btn-sm flex-fill">
+                        <a href="edit.php?id=<?= $news['id'] ?>" class="btn btn-outline-primary btn-sm flex-fill">
                             <i class="bi bi-pencil me-1"></i>Edit
                         </a>
 

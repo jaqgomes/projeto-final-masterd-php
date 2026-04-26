@@ -1,0 +1,61 @@
+<div class="row g-3">
+
+    <!--Titulo-->
+    <div class="col-md-4">
+        <label for="titulo" class="form-titulo">Título<span class="text-danger">*</span></label>
+        <input type="text" id="titulo" name="titulo"
+            class="form-control <?= isset($errors['titulo']) ? 'is-invalid' : '' ?>"
+            value="<?= htmlspecialchars($input['titulo']) ?>" maxlength="100">
+        <?php if (isset($errors['titulo'])): ?>
+        <div class="invalid-feedback">
+            <?= $errors['titulo'] ?>
+        </div>
+        <?php endif; ?>
+    </div>
+
+    <!--Imagem-->
+    <div class="col-md-7">
+        <label class="imagem-label" for="imagem" name="imagem">Imagem</label>
+        <input type="file" id="imagem" name="imagem"
+            class="form-control <?= isset($errors['imagem']) ? 'is-invalid' : '' ?>">
+        <?php if (isset($errors['imagem'])): ?>
+        <div class="invalid-feedback">
+            <?= $errors['imagem'] ?>
+        </div>
+        <?php endif; ?>
+    </div>
+
+    <div>
+        <?php if (!empty($news['imagem'])): ?>
+        <p>Imagem atual:</p>
+        <img src="/projeto-final/news/uploads/<?= $news['imagem'] ?>" alt="Imagem atual"
+            style="max-width: 150px; margin-bottom:10px;">
+
+        <div style="display:block; margin-top:10px;">
+            <input id="remover_imagem" type="checkbox" name="remover_imagem" value="1">
+            <label for="remover_imagem">Remover imagem</label>
+        </div>
+        <?php endif; ?>
+    </div>
+
+
+
+    <!--Conteudo-->
+    <div class="col-md-12">
+        <label for="conteudo" class="conteudo-label">Conteudo <span class="text-danger">*</span></label>
+        <textarea id="conteudo" name="conteudo"
+            class="form-control <?= isset($errors['conteudo']) ? 'is-invalid' : '' ?>"
+            style="height: 150px"><?= htmlspecialchars($input['conteudo']) ?></textarea>
+        <?php if (isset($errors['conteudo'])): ?>
+        <div class="invalid-feedback">
+            <?= $errors['conteudo'] ?>
+        </div>
+        <?php endif; ?>
+    </div>
+
+    <!--Data de publicacao-->
+    <div class="col-md-6">
+        <label for="date" class="data-label">Data de publicação</label>
+        <input type="date" id="date" name="date" class="form-control" value="<?= htmlspecialchars($input['date']) ?>">
+    </div>
+</div>

@@ -33,8 +33,8 @@ class NewsService
 
     public function updateNews($id, $titulo, $conteudo, $imagem, $data_publicacao)
     {
-        $stmt = $this->database->prepare("UPDATE noticias SET titulo = ?, conteudo = ?, imagem = ?, data_publicacao = ?, WHERE id = ?");
-        $stmt->bind_param("issi", $titulo, $conteudo, $imagem, $data_publicacao, $id);
+        $stmt = $this->database->prepare("UPDATE noticias SET titulo = ?, conteudo = ?, imagem = ?, data_publicacao = ? WHERE id = ?");
+        $stmt->bind_param("ssssi", $titulo, $conteudo, $imagem, $data_publicacao, $id);
         return $stmt->execute();
     }
 
