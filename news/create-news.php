@@ -4,6 +4,7 @@ include('NewsService.php');
 $newsService = new NewsService();
 
 session_start();
+$listNewsPageLink = "/projeto-final/news/list-news-manager.php";
 
 $pageTitle = 'Add News — Web System';
 $errors = [];
@@ -58,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $input['date']
         );
 
-        $_SESSION['flash'] = ['type' => 'sucess', 'message' => 'News added successfully!'];
-        header('Location: /projeto-final/news/list.php');
+        $_SESSION['flash'] = ['type' => 'success', 'message' => 'News added successfully!'];
+        header("Location: $listNewsPageLink");
         exit;
     }
 }
@@ -84,7 +85,7 @@ require_once __DIR__ . '/../includes/header.html';
                 <i class="bi bi-plus-circle me-2"></i>News Details
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="/projeto-final/news/create.php" novalidate enctype="multipart/form-data">
+                <form method="POST" action="/projeto-final/news/create-news.php" novalidate enctype="multipart/form-data">
 
 
                     <?php include __DIR__ . '/news-details.html'; ?>
@@ -92,7 +93,7 @@ require_once __DIR__ . '/../includes/header.html';
                     <hr class="my-4">
 
                     <div class="d-flex gap-2 justify-content-end">
-                        <a href="/projeto-final/news/list.php" class="btn btn-outline-secondary">
+                        <a href="<?= $listNewsPageLink ?>" class="btn btn-outline-secondary">
                             <i class="bi bi-x-lg me-1"></i>
                             Cancel
                         </a>

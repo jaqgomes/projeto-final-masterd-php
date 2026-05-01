@@ -2,7 +2,7 @@
 
 include '../config/Database.php';
 
-class ProjectsService
+class ProjectService
 {
     private $database;
 
@@ -28,8 +28,8 @@ class ProjectsService
     {
         $result = $this->database->query("SELECT * FROM projetos");
         return $result->fetch_all(MYSQLI_ASSOC);
-        echo "estou aqui";
     }
+    
     //o metodo getProjectsId buscar um projeto pelo ID usando prepared statements
     //onde ? sera substituido pelo ID
     public function getProjectsId($id)

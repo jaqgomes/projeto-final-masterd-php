@@ -88,8 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $input['date']
         );
 
-        $_SESSION['flash'] = ['type' => 'sucess', 'message' => 'News added successfully!'];
-        header('Location: /projeto-final/news/list.php');
+        $_SESSION['flash'] = ['type' => 'success', 'message' => 'Noticia alterada com sucesso!'];
+        header('Location: /projeto-final/news/list-news-manager.php');
         exit;
     }
 }
@@ -122,7 +122,7 @@ require_once __DIR__ . '/../includes/header.html';
                     <hr class="my-4">
 
                     <div class="d-flex gap-2 justify-content-end">
-                        <a href="/projeto-final/news/list.php" class="btn btn-outline-secondary">
+                        <a href="/projeto-final/news/list-news-manager.php" class="btn btn-outline-secondary">
                             <i class="bi bi-x-lg me-1"></i>
                             Cancel
                         </a>

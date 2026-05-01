@@ -14,77 +14,33 @@
 </head>
 
 <body>
-
-    <!-- TODO: add back to end of navbar -> fixed-top -->
-    <nav class="navbar navbar-dark bg-dark ">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/projeto-final/index.php">Sistema Web</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
-                aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/projeto-final/index.php">
+                <i class="bi bi-browser-edge me-2"></i>
+                Sistema Web
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
-                aria-labelledby="offcanvasDarkNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Sistema Web</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Portfólios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                News
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/projeto-final/news/list.php">List</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="/projeto-final/news/create.php">Create</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Projects
-                            </a>
-                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/projeto-final/projects/">List</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="/projeto-final/projects/">Create</a></li>
-                            </ul>
-
-                        </li>
-                    </ul>
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-info" type="submit">Search</button>
-                    </form>
-                </div>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/projeto-final/project/list-project.php"><i
+                                class="bi bi-kanban-fill me-1"></i>Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/projeto-final/news/list-news.php"><i class="bi bi-newspaper me-1"></i>Noticias</a>
+                    </li>
+                    <a class="nav-link" href="/projeto-final/contact.php"><i
+                            class="bi bi-person-lines-fill me-1"></i>Contacto</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/projeto-final/about.php"><i class="bi bi-plus-circle me-1"></i>Sobre</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
+    </div>
 
     <main class="container my-4">
-
-</body>
-
-</html>
