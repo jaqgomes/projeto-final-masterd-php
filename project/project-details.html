@@ -1,0 +1,73 @@
+<div class="row g-3">
+
+    <!--Nome do projeto-->
+    <label for="nome_projeto" class="form-nome">Nome do Projeto<span class="text-danger">*</span></label>
+    <input type="text" id="nome_projeto" name="nome_projeto"
+        class="form-control <?=isset($errors['titulo']) ? 'is-invalid' : '' ?>"
+        value="<?= htmlspecialchars($input['nome_projeto']) ?>" maxlength="100">
+    <?php if(isset($errors['nome_projeto'])) : ?>
+    <div class="invalid-feedback">
+        <?=$errors['nome_projeto'] ?>
+    </div>
+    <?php endif; ?>
+
+    <!--Descricao-->
+    <label for="descricao" class="form-descricao">
+        Descrição<span class="text-danger">*</span>
+    </label>
+    <input type="text" id="descricao" name="descricao"
+        class="form-control <?=isset($errors['descricao']) ? 'is-invalid' : '' ?>"
+        value="<?= htmlspecialchars($input['descricao']) ?>" maxlength="100">
+    <?php if(isset($errors['nome_projeto'])) : ?>
+    <div class="invalid-feedback">
+        <?=$errors['descricao'] ?>
+    </div>
+    <?php endif; ?>
+
+    <!--Tecnologia-->
+    <label for="tecnologia" class="form-tecnologia">
+        Tecnologia<span class="text-danger">*</span>
+    </label>
+    <input type="text" id="tecnologia" name="tecnologia"
+        class="form-control <?=isset($errors['tecnologia']) ? 'is-invalid' : '' ?>"
+        value="<?= htmlspecialchars($input['tecnologia']) ?>" maxlength="100">
+    <?php if(isset($errors['tecnologia'])) : ?>
+    <div class="invalid-feedback">
+        <?=$errors['tecnologia'] ?>
+    </div>
+
+    <!--Tempo de conclusão-->
+    <div class="col-md-6">
+        <label for="date" class="data-label">Tempo de conclusão</label>
+        <input type="date" id="date" name="date" class="form-control" value="<?= htmlspecialchars($input['date']) ?>">
+    </div>
+
+    <!--Fotografia-->
+
+    <div class="col-md-7">
+        <label class="fotografia-label" for="fotografia" name="fotografia">Fotografia</label>
+        <input type="file" id="fotografia" name="fotografia" class="form-control <?=isset($errors['fotografia'])
+            ? 'is-invalid' : '' ?>">
+        <?php if(isset($errors['imagem'])): ?>
+        <div class="invalid-feedback">
+            <?= $errors['fotografia'] ?>
+        </div>
+        <?php endif; ?>
+    </div>
+
+
+    <div>
+        <?php if(!empty($project['fotografia'])): ?>
+        <p>Fotografia</p>
+        <img src="/projeto-final/project/uploads/<? $project['project'] ?>" alt="Fotografia"
+            style="max-width:150; margin-bottom:10px;">
+
+        <div style="display: block; margin-top: 10px;">
+            <input id="remover_fotografia" type="checkbox" name="remover_fotografia" value="1">
+            <label for="remover_imagem">Remover Imagem</label>
+        </div>
+        <?php endif; ?>
+    </div>
+
+
+</div>
