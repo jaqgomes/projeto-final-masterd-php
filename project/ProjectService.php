@@ -16,9 +16,9 @@ class ProjectService
     //executa uma query no banco de dados ($stmt);
     //utilizado quando na criacao de projetos, depois de validar os dados, depois de fazer upload da imagem
 
-    public function createProjects($nome_projeto, $descricao, $tecnologia, $tempo_conclusao, $fotografia)
+    public function createProject($nome_projeto, $descricao, $tecnologia, $tempo_conclusao, $fotografia)
     {
-        $stmt = $this->database->prepare("INSERT INTO projetos (nome_projeto, descricao, tecnologia, tempo_conslusao, fotografia) VALUES(?,?,?,?,?)");
+        $stmt = $this->database->prepare("INSERT INTO projetos (nome_projeto, descricao, tecnologia, tempo_conclusao, fotografia) VALUES(?,?,?,?,?)");
         $stmt->bind_param("sssss", $nome_projeto, $descricao, $tecnologia, $tempo_conclusao, $fotografia);
         return $stmt->execute();
 
@@ -30,9 +30,9 @@ class ProjectService
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     
-    //o metodo getProjectsId buscar um projeto pelo ID usando prepared statements
+    //o metodo getProjectId buscar um projeto pelo ID usando prepared statements
     //onde ? sera substituido pelo ID
-    public function getProjectsId($id)
+    public function getProjectById($id)
     {
         $stmt = $this->database->prepare("SELECT * FROM projetos WHERE id = ?");
         $stmt->bind_param("i", $id);
@@ -40,7 +40,7 @@ class ProjectService
         return $stmt->get_result()->fetch_assoc();
     }
     //esse metodo atualiza o banco de dados , substituindo pelo que enviar. Apenas com valor do ID que passar 
-    public function updateProjects($id, $nome_projeto, $descricao, $tecnologia, $tempo_conclusao, $fotografia)
+    public function updateProject($id, $nome_projeto, $descricao, $tecnologia, $tempo_conclusao, $fotografia)
     {
         $stmt = $this->database->prepare("UPDATE projetos SET nome_projeto = ?, descricao = ?, tecnologia = ?, tempo_conclusao = ?, fotografia = ? WHERE id = ?");
         $stmt->bind_param("sssssi", $nome_projeto, $descricao, $tecnologia, $tempo_conclusao, $fotografia, $id);
@@ -48,7 +48,7 @@ class ProjectService
 
     }
     //prepara a query SQL, apaga o projeto cujo ID corresponder ao valor enviado
-    public function deleteProjects($id)
+    public function deleteProject($id)
     {
         $stmt = $this->database->prepare("DELETE FROM projetos WHERE id = ?");
         $stmt->bind_param("i", $id);

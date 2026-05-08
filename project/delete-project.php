@@ -16,7 +16,7 @@ $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 if ($id > 0) {
     ;
 
-    if ($projectService->deleteProjects($id)) {
+    if ($projectService->deleteProject($id)) {
         $_SESSION['flash'] = ['type' => 'success', 'message' => 'Projeto removido com sucesso.'];
     } else {
         $_SESSION['flash'] = ['type' => 'warning', 'message' => 'Projeto nao encontrado ou ja removido.'];

@@ -11,7 +11,7 @@ $news = $newsService->getNewsById($id);
 if (!$news) {
     http_response_code(404);
     $_SESSION['flash'] = ['type' => 'danger', 'message' => 'News not found.'];
-    header('Location: /projeto-final/news/list.php');
+    header('Location: /projeto-final/news/list-news-manager.php');
     exit;
 }
 
@@ -114,7 +114,7 @@ require_once __DIR__ . '/../includes/header.html';
                 <i class="bi bi-plus-circle me-2"></i>News Details
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="/projeto-final/news/edit.php?id=<?= $id ?>" novalidate
+                <form method="POST" action="/projeto-final/news/edit-news.php?id=<?= $id ?>" novalidate
                     enctype="multipart/form-data">
 
                     <?php include __DIR__ . '/news-details.html'; ?>

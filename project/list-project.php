@@ -20,6 +20,7 @@ $projectList = $projectService->getAllProjects();
         <?php foreach ($projectList as $project) { ?>
             <div class="col">
                 <div class="card h-100">
+                    <img src="/projeto-final/project/uploads/<?= $project['fotografia'] ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?= $project['nome_projeto'] ?></h5>
                         <p class="card-text"><?= $project['descricao'] ?></p>

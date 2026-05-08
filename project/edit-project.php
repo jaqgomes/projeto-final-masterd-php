@@ -1,15 +1,31 @@
 <?php
-
 include('ProjectService.php');
+
+session_start();
 
 $projectService = new ProjectService();
 
-session_start();
-$listProjectPageLink = "/projeto-final/project/list-project-manager.php";
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+$project = $projectService->getProjectById($id);
 
-$pageTitle = "Add project - Web System";
+
+if (!$project) {
+    http_response_code(404);
+    $_SESSION['flash'] = ['type' => 'danger', 'message' => 'Project not found.'];
+    header('Location: /projeto-final/project/list-project-manager.php');
+}
+
+//metodo usado para validar e converter data para exibir na tela
+
+if (!empty($project['tempo_conclusao'])) {
+    $dateObj = new DateTime($project['tempo_conclusao']);
+    $date = $dateObj->format('Y-m-d');
+}
+
+$pageTitle = 'Edit Project - Web System';
 $errors = [];
-$input = ['nome_projeto' => '', 'descricao' => '', 'tecnologia' => '', 'tempo_conclusao' => '', 'fotografia' => ''];
+$input = $project;
+$input['date'] = $date ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -18,27 +34,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input['tecnologia'] = trim($_POST['tecnologia'] ?? '');
     $input['tempo_conclusao'] = trim($_POST['tempo_conclusao'] ?? '');
 
-
-
     if ($input['nome_projeto'] === '') {
-        $errors['nome_projeto'] = 'Nome do Projeto é obrigatorio';
+        $errors['nome_projeto'] = 'Nome do projeto é obrigatório. ';
     }
 
-    if ($input['tempo_conclusao'] === '') {
-        $input['tempo_conclusao'] = null;
-    }
+    if (!empty($_POST['remover_fotografia']) && !empty($project['fotografia'])) {
 
-    if (!empty($_FILES['fotografia']['name'])) {
+        $caminho = __DIR__ . '/uploads' . $project['fotografia'];
+
+        if (file_exists($caminho)) {
+            unlink($caminho);
+        }
+
+        $input['fotografia'] = null;
+
+    } elseif (!empty($_FILES['fotografia']['name'])) {
+
         $file = $_FILES['fotografia'];
 
         if ($file['error'] !== UPLOAD_ERR_OK) {
-            $errors['fotografia'] = 'Erro ao enviar a imagem.';
+            $errors['fotografia'] = 'Erro ao enviar a fotografia.';
 
         } else {
-            //$allowed = ['fotografia/jpeg', 'fotografia/png', 'fotografia/webp'];
             $allowed = ['image/jpeg', 'image/png', 'image/webp'];
             if (!in_array($file['type'], $allowed)) {
-                $errors['fotografia'] = 'A fotografia deve ser JPEG, PNG ou WEBP.';
+                $errors['fotografia'] = 'A fotografia deve ser JPEG, PNG e WEBP.';
             }
         }
 
@@ -48,32 +68,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($_FILES['fotografia']['tmp_name'], $destino);
 
     } else {
-        $input['fotografia'] = null;
+        $input['fotografia'] = $project['fotografia'];
     }
 
     if (empty($errors)) {
-
-        $projectService->createProject(
+        $projectService->updateProject(
+            $id,
             $input['nome_projeto'],
             $input['descricao'],
             $input['tecnologia'],
             $input['tempo_conclusao'],
             $input['fotografia']
-
         );
 
-        $_SESSION['flash'] = ['type' => 'success', 'message' => 'Projeto Adicionado com Sucesso!'];
-        header("Location: $listProjectPageLink");
+        $_SESSION['flash'] = ['type' => 'success', 'message' => 'Projeto alterado com sucesso!'];
+        header('Location: /projeto-final/project/list-project-manager.php');
         exit;
     }
 }
-require_once __DIR__ . '/../includes/header.html';
 
+require_once __DIR__ . '/../includes/header.html';
 ?>
+
 
 <div class="row justify-content-center">
     <div class="col-lg-7">
-        <h2 class="page-header">Add project</h2>
+        <h2 class="page-header">Edit Project</h2>
 
         <?php if (!empty($errors)): ?>
             <div class="alert alert-danger">
@@ -88,25 +108,28 @@ require_once __DIR__ . '/../includes/header.html';
                 <i class="bi bi-plus-circle me-2"></i>Project Details
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="/projeto-final/project/create-project.php" novalidate
+                <form method="POST" action="/projeto-final/project/edit-project.php?id=<?= $id ?>" novalidate
                     enctype="multipart/form-data">
+
                     <?php include __DIR__ . '/project-details.html'; ?>
 
                     <hr class="my-4">
 
                     <div class="d-flex gap-2 justify-content-end">
-                        <a href="<?= $listProjectPageLink ?>" class="btn btn-outline-secondary">
+                        <a href="/projeto-final/project/list-project-manager.php" class="btn btn-outline-secondary">
                             <i class="bi bi-x-lg me-1"></i>
                             Cancel
                         </a>
                         <button type="submit" class="btn btn-primary">
                             <i class="bi bi-save me-1"></i>
-                            Salve Project
+                            Update News
                         </button>
                     </div>
+
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <?php require_once __DIR__ . '/../includes/footer.html'; ?>

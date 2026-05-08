@@ -21,7 +21,7 @@ $projectList = $projectService->getAllProjects();
 <?php if ($flash): ?>
     <div class="alert alert-<?= $flash['type'] ?> alert-dismissible fade show" role="alert">
         <i class="bi bi-<?= $flash['type'] === 'sucess' ? 'check-circle' : 'exclamation-triangule' ?> me-2"></i>
-        <?= htmlspecialchars($flash(['message'])) ?>
+        <?= htmlspecialchars($flash['message']) ?>
         <button type="button" class="btn-close" data-bs-dimiss="alert"></button>
     </div>
 
@@ -56,7 +56,7 @@ $projectList = $projectService->getAllProjects();
                         <td><?= $project['tecnologia'] ?></td>
 
                         <td>
-                            <a href="projectEdit.php?id=<?= $project['id'] ?>" class="btn btn-outline-primary btn-sm flex-fill">
+                            <a href="edit-project.php?id=<?= $project['id'] ?>" class="btn btn-outline-primary btn-sm flex-fill">
                                 <i class="bi bi-pencil me-1"></i>Edit
                             </a>
                             <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal"
