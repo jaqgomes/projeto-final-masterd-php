@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <?= htmlspecialchars($pageTitle ?? 'Sistema Web') ?>
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/projeto-final/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/projeto-final/index.php">
+                <i class="bi bi-browser-edge me-2"></i>
+                Sistema Web
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/projeto-final/project/list-project.php"><i
+                                class="bi bi-kanban-fill me-1"></i>Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/projeto-final/news/list-news.php"><i
+                                class="bi bi-newspaper me-1"></i>Noticias</a>
+                    </li>
+                    <a class="nav-link" href="/projeto-final/contact.php"><i
+                            class="bi bi-person-lines-fill me-1"></i>Contacto</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/projeto-final/about.php"><i
+                                class="bi bi-plus-circle me-1"></i>Sobre</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person me-1"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <?php if (!SessionService::isLoggedIn()): ?>
+                                <li>
+                                    <a class="dropdown-item" href="/projeto-final/security/login.php"><i
+                                            class="bi bi-box-arrow-in-right me-1"></i></i>Login</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if (SessionService::isLoggedIn()): ?>
+                                <li>
+                                    <a class="dropdown-item" href="/projeto-final/security/logout.php">
+                                        <i class="bi bi-box-arrow-right me-1"></i>Logout
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            <?php endif; ?>
+                            <?php if (!SessionService::isLoggedIn()): ?>
+                                <li>
+                                    <a class="dropdown-item" href="/projeto-final/security/register.php"><i
+                                            class="bi bi-plus-circle me-1"></i>Registrar</a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (SessionService::isLoggedIn()): ?>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">
+                                        <i class="bi bi-person-lines-fill me-1"></i>Perfil
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </div>
+
+    <main class="container my-4">

@@ -1,8 +1,13 @@
 <?php
 
-include 'NewsService.php';
+require_once __DIR__ . '/../security/SessionService.php';
+
+include('NewsService.php');
+
+$newsService = new NewsService();
 
 session_start();
+SessionService::isRequireLogin();
 
 $newsService = new NewsService();
 

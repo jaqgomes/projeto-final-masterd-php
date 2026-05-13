@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/header.html';
+require_once __DIR__ . '/../includes/header.php';
 include('ProjectService.php');
 
 $pageTitle = 'Gerenciador de Projetos - Sistema Web';
@@ -14,7 +14,7 @@ $projectList = $projectService->getAllProjects();
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2 class="page-header mb-0">Projets Manager</h2>
-    <a href="/projeto-final/project/create-project.php" class="btn btn-primary">
+    <a href="/projeto-final/project/create-project.php" class="btn btn-dark">
         <i class="bi bi-plus-lg me-1"></i>Add Project</a>
 </div>
 
@@ -33,7 +33,7 @@ $projectList = $projectService->getAllProjects();
             <i class="bi bi-plus-lg me-1"></i>
             <h4>Nenhuma projeto encontrado.</h4>
             <p>Comece adicionando seu primeiro projeto. </p>
-            <a href="/projeto-final/project/create-project.php" class="btn btn-primary">Adicionar projetos</a>
+            <a href="/projeto-final/project/create-project.php" class="btn btn-dark">Adicionar projetos</a>
         </div>
 
     <?php else: ?>
@@ -56,7 +56,7 @@ $projectList = $projectService->getAllProjects();
                         <td><?= $project['tecnologia'] ?></td>
 
                         <td>
-                            <a href="edit-project.php?id=<?= $project['id'] ?>" class="btn btn-outline-primary btn-sm flex-fill">
+                            <a href="edit-project.php?id=<?= $project['id'] ?>" class="btn btn-outline-dark btn-sm flex-fill">
                                 <i class="bi bi-pencil me-1"></i>Edit
                             </a>
                             <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal"

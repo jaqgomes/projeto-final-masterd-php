@@ -1,9 +1,14 @@
 <?php
+require_once __DIR__ . '/../security/SessionService.php';
+
+
 include('NewsService.php');
 
 $newsService = new NewsService();
 
 session_start();
+SessionService::isRequireLogin();
+
 $listNewsPageLink = "/projeto-final/news/list-news-manager.php";
 
 $pageTitle = 'Add News — Web System';
@@ -65,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require_once __DIR__ . '/../includes/header.html';
+require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="row justify-content-center">
@@ -97,7 +102,7 @@ require_once __DIR__ . '/../includes/header.html';
                             <i class="bi bi-x-lg me-1"></i>
                             Cancel
                         </a>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-dark">
                             <i class="bi bi-save me-1"></i>
                             Salve News
                         </button>

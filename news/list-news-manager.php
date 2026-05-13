@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/../includes/header.html';
+require_once __DIR__ . '/../security/SessionService.php';
+
 include('NewsService.php');
 
 $pageTitle = 'Gerenciador de Noticias — Sistema Web';
@@ -8,18 +9,20 @@ $pageTitle = 'Gerenciador de Noticias — Sistema Web';
 session_start();
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
-
+SessionService::isRequireLogin();
 
 $newsService = new NewsService();
 $newsList = $newsService->getAllNews();
 
 $createNewsPageLink = "create-news.php";
 $deleteNewsPageLink = "delete-news.php";
+
+require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2 class="page-header mb-0">News Manager</h2>
-    <a href="<?= $createNewsPageLink ?>" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Add news</a>
+    <a href="<?= $createNewsPageLink ?>" class="btn btn-dark"><i class="bi bi-plus-lg me-1"></i>Add news</a>
 </div>
 
 <?php if ($flash): ?>
@@ -37,7 +40,7 @@ $deleteNewsPageLink = "delete-news.php";
             <i class="bi bi-newspaper"></i>
             <h4>Nenhuma notícia encontrada. </h4>
             <p>Comece adicionando sua primeira notícia.</p>
-            <a href="<?= $createNewsPageLink ?>" class="btn btn-primary">Add News</a>
+            <a href="<?= $createNewsPageLink ?>" class="btn btn-dark">Add News</a>
         </div>
     </div>
 
@@ -61,7 +64,7 @@ $deleteNewsPageLink = "delete-news.php";
                     <td><?= $news['conteudo'] ?></td>
                     <td><?= substr($news['data_publicacao'] ?? '', 0, 10) ?></td>
                     <td>
-                        <a href="edit-news.php?id=<?= $news['id'] ?>" class="btn btn-outline-primary btn-sm flex-fill">
+                        <a href="edit-news.php?id=<?= $news['id'] ?>" class="btn btn-outline-dark btn-sm flex-fill">
                             <i class="bi bi-pencil me-1"></i>Edit
                         </a>
                         <button type="button" class="btn btn-outline-danger btn-sm flex-fill" data-bs-toggle="modal"
