@@ -47,8 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
-
-
 <div class="d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 10rem);">
     <div class="row justify-content-center w-100">
         <div class="col-lg-4">
