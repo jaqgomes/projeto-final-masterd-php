@@ -9,7 +9,7 @@ $pageTitle = 'Gerenciador de Noticias — Sistema Web';
 session_start();
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
-SessionService::isRequireLogin();
+SessionService::isRequireAdmin();
 
 $newsService = new NewsService();
 $newsList = $newsService->getAllNews();

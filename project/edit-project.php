@@ -1,13 +1,16 @@
 <?php
+require_once __DIR__ . '/../security/SessionService.php';
 include('ProjectService.php');
 
+$projectService = new ProjectService();
+
 session_start();
+SessionService::isRequireLogin();
 
 $projectService = new ProjectService();
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $project = $projectService->getProjectById($id);
-
 
 if (!$project) {
     http_response_code(404);

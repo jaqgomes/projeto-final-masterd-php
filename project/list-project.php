@@ -1,18 +1,18 @@
 <?php
 
-require_once __DIR__ . '/../security/SessionService.php';
+    require_once __DIR__ . '/../security/SessionService.php';
 
-include 'ProjectService.php';
+    include 'ProjectService.php';
 
-$projectService = new ProjectService();
-$projectList = $projectService->getAllProjects();
+    $projectService = new ProjectService();
+    $projectList = $projectService->getAllProjects();
 
-session_start();
-$flash = $_SESSION['flash'] ?? null;
-unset($_SESSION['flash']);
+    session_start();
+    $flash = $_SESSION['flash'] ?? null;
+    unset($_SESSION['flash']);
 
 
-require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -32,7 +32,9 @@ require_once __DIR__ . '/../includes/header.php';
         <?php foreach ($projectList as $project) { ?>
             <div class="col">
                 <div class="card h-100">
-                    <img src="/projeto-final/project/uploads/<?= $project['fotografia'] ?>" class="card-img-top" alt="...">
+                    <?php if (!empty($project['fotografia'])): ?>
+                        <img src="/projeto-final/project/uploads/<?= $project['fotografia'] ?>" class="card-img-top">
+                    <?php endif; ?>
                     <div class="card-body">
                         <h5 class="card-title"><?= $project['nome_projeto'] ?></h5>
                         <p class="card-text"><?= $project['descricao'] ?></p>

@@ -13,6 +13,10 @@ CREATE TABLE utilizadores (
     role ENUM('admin', 'cliente') DEFAULT 'cliente'
 );
 
+INSERT INTO utilizadores
+(id, nome, apelido, email, telefone, username, password, `role`)
+VALUES(0, 'Admin', 'Admin', 'email@admin.com', '912029123', 'admin', '$2y$10$qPl63RAgv34.jnK0KDmuHuHd/UIy51BcVJQXv32v6mnEk2NtCrbE6', 'admin');
+
 CREATE TABLE noticias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,

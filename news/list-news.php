@@ -1,21 +1,21 @@
 <?php
-require_once __DIR__ . '/../security/SessionService.php';
+    require_once __DIR__ . '/../security/SessionService.php';
 
-include 'NewsService.php';
+    include 'NewsService.php';
 
-$newsService = new NewsService();
-$newsList = $newsService->getAllNews();
+    $newsService = new NewsService();
+    $newsList = $newsService->getAllNews();
 
-session_start();
-$flash = $_SESSION['flash'] ?? null;
-unset($_SESSION['flash']);
+    session_start();
+    $flash = $_SESSION['flash'] ?? null;
+    unset($_SESSION['flash']);
 
-require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2 class="page-header mb-0">Noticias</h2>
-    <?php if (SessionService::isLoggedIn()): ?>
+    <?php if (SessionService::isAdmin()): ?>
     <a href="/projeto-final/news/list-news-manager.php" class="btn btn-dark">
         <i class="bi bi-plus-lg me-1"></i>Gerenciar Noticias</a>
     <?php endif; ?>

@@ -6,7 +6,7 @@ include('NewsService.php');
 $newsService = new NewsService();
 
 session_start();
-SessionService::isRequireLogin();
+SessionService::isRequireAdmin();
 
 $newsService = new NewsService();
 

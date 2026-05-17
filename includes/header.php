@@ -26,18 +26,24 @@
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/projeto-final/project/list-project.php"><i
-                                class="bi bi-kanban-fill me-1"></i>Projetos</a>
+                        <a class="nav-link" href="/projeto-final/project/list-project.php">
+                            <i class="bi bi-kanban-fill me-1"></i>Projetos
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/projeto-final/news/list-news.php"><i
-                                class="bi bi-newspaper me-1"></i>Noticias</a>
+                        <a class="nav-link" href="/projeto-final/news/list-news.php">
+                            <i class="bi bi-newspaper me-1"></i>Noticias
+                        </a>
                     </li>
-                    <a class="nav-link" href="/projeto-final/contact.php"><i
-                            class="bi bi-person-lines-fill me-1"></i>Contacto</a>
+                    <?php if (SessionService::isLoggedIn()): ?>
+                    <a class="nav-link" href="/projeto-final/contact.php">
+                        <i class="bi bi-person-lines-fill me-1"></i>Contacto
+                    </a>
+                    <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/projeto-final/about.php"><i
-                                class="bi bi-plus-circle me-1"></i>Sobre</a>
+                        <a class="nav-link" href="/projeto-final/about.php">
+                            <i class="bi bi-plus-circle me-1"></i>Sobre
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -48,34 +54,36 @@
                             <?php if (!SessionService::isLoggedIn()): ?>
                                 <li>
                                     <a class="dropdown-item" href="/projeto-final/security/login.php"><i
-                                            class="bi bi-box-arrow-in-right me-1"></i></i>Login</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
+                                            class="bi bi-box-arrow-in-right me-1"></i></i>Login
+                                    </a>
                                 </li>
                             <?php endif; ?>
 
                             <?php if (SessionService::isLoggedIn()): ?>
                                 <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
                                     <a class="dropdown-item" href="/projeto-final/security/logout.php">
                                         <i class="bi bi-box-arrow-right me-1"></i>Logout
                                     </a>
                                 </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
                             <?php endif; ?>
                             <?php if (!SessionService::isLoggedIn()): ?>
                                 <li>
-                                    <a class="dropdown-item" href="/projeto-final/security/register.php"><i
-                                            class="bi bi-plus-circle me-1"></i>Registrar</a>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/projeto-final/security/register.php">
+                                        <i class="bi bi-plus-circle me-1"></i>Registrar
+                                    </a>
                                 </li>
                             <?php endif; ?>
                             <?php if (SessionService::isLoggedIn()): ?>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">
+                                <li><a class="dropdown-item" href="/projeto-final/security/profile.php">
                                         <i class="bi bi-person-lines-fill me-1"></i>Perfil
                                     </a>
                                 </li>

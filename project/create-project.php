@@ -1,10 +1,12 @@
 <?php
+require_once __DIR__ . '/../security/SessionService.php';
 
 include('ProjectService.php');
 
 $projectService = new ProjectService();
 
 session_start();
+SessionService::isRequireLogin();
 $listProjectPageLink = "/projeto-final/project/list-project-manager.php";
 
 $pageTitle = "Add project - Web System";
@@ -17,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input['descricao'] = trim($_POST['descricao'] ?? '');
     $input['tecnologia'] = trim($_POST['tecnologia'] ?? '');
     $input['tempo_conclusao'] = trim($_POST['tempo_conclusao'] ?? '');
-
-
 
     if ($input['nome_projeto'] === '') {
         $errors['nome_projeto'] = 'Nome do Projeto é obrigatorio';

@@ -7,7 +7,7 @@ include('NewsService.php');
 $newsService = new NewsService();
 
 session_start();
-SessionService::isRequireLogin();
+SessionService::isRequireAdmin();
 
 $listNewsPageLink = "/projeto-final/news/list-news-manager.php";
 
@@ -91,7 +91,6 @@ require_once __DIR__ . '/../includes/header.php';
             </div>
             <div class="card-body p-4">
                 <form method="POST" action="/projeto-final/news/create-news.php" novalidate enctype="multipart/form-data">
-
 
                     <?php include __DIR__ . '/news-details.html'; ?>
 
